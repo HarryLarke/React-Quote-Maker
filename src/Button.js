@@ -1,11 +1,15 @@
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom" 
 
 const Button = ({name, classString, setSelectedQuote, selectQuote}) => {
+    const navigate = useNavigate ()
     return (
-        <button
+        <Link
+        to="/quote"
         className={classString}
-        onClick={() => setSelectedQuote(selectQuote = name)}
-        >{name}</button> )
+        onClick={() =>setSelectedQuote(selectQuote = name)
+        }
+        >{name}</Link> )
 }
 
 export default Button
