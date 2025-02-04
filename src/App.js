@@ -1,6 +1,8 @@
 import './index.css';
 import Home from './Home'
 import QuotePage from './QuotePage';
+import Missing from './Missing'
+
 import { Routes, Route }  from 'react-router-dom'
 import { useState } from 'react';
 
@@ -28,6 +30,8 @@ function App() {
         <Route path="/quote" index element={<QuotePage
         selectQuote={selectQuote}
         />}/>
+
+        <Route path='*' element={<Missing/>}/>
       </Routes>
   );
 }

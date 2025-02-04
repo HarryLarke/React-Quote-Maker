@@ -1,30 +1,22 @@
+import useHandleBackground from "./hooks/HandleBackground"
+import useHandleQuoteStyle from "./hooks/HandleQuoteStyle"
+import Button from "./Button"
+import { Link } from "react-router-dom"
+import { useEffect } from "react"
 
 
 const Quote = ({data, selectQuote}) => {
 
-    const handleQuoteStyle = () => {
-        if (selectQuote === 'joke') {
-            const fontFamily = "var(--TERTIARY-FONT)"
-            return fontFamily }
-        
-        if (selectQuote === 'random') {
-            const rNum = Math.floor(Math.random() * (4 - 1) + 1) 
-            if (rNum === 1) {
-            const fontFamily = "var(--TERTIARY-FONT)"
-            return fontFamily
-            }
+    const quoteType = selectQuote
 
-            if (rNum === 2) {
-            const fontFamily = "var(--SECONDARY-FONT)"
-            return fontFamily
-            }
-     
-            if (rNum === 3) {
-            const fontFamily = "var(--TERTIARY-FONT)"
-            return fontFamily
+    const className  = useHandleBackground(quoteType)
+    const quoteStyle = useHandleQuoteStyle(quoteType)
+    console.log(quoteStyle)
+    console.log(className)
 
-            }
-        }}
+    
+
+        //ALl above to become hooks!
 
         const handleQuote = () => {
         if (selectQuote === 'inspire') {
@@ -32,7 +24,7 @@ const Quote = ({data, selectQuote}) => {
             return text
         }
         if (selectQuote === 'joke') {
-            const {joke } = data
+            const { joke } = data
             return joke
         }
         if (selectQuote === 'random') {
@@ -57,28 +49,41 @@ const Quote = ({data, selectQuote}) => {
         }
         }
 
-    //Maybe do a varying style functions, where the style of the quote is change according to the type of quote chosen! 
+    //Make both background and fontFamily hooks don't like to run at the same time??? Combine them?
     //Could I turn this into a hook? Or the random number generator into one? 
     //need to set a default or remember previous value chosen?? SO when reload occurs it keeps the original quote brings a new one! --Could save to local storage?
-    //
-    //variable destructuring here! Mabye put the same definition on the page , but have a different process of destructuring when item move onto the page?
+
     return(
         <main
-        className="main">
+        className={className}>
             <section
                 className="quote-container">
                 <h1
                 className="main-quote"
-                style={{fontFamily:handleQuoteStyle()}}
+                style={quoteStyle}
                 >{handleQuote()}
                 </h1>
                 <h2
                 className="author"
-                style={{fontFamily:handleQuoteStyle()}}
+                style={quoteStyle}
                 >{handleAuthor()}</h2>
+            </section>
+
+            <section
+            className="subtitle-container">
+                <Link
+                className="button inspire"
+                to={'/'}
+                >Home</Link>
+                <Button
+                classString={'button inspire'}
+                name={'New Quote'}
+                id={'/quote'}
+                setSelectQuote={selectQuote}/>
             </section>
         </main>
     )
 }
+//Yet to find an appropriate way to reload to the page!
 
 export default Quote

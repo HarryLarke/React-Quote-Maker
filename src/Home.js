@@ -41,16 +41,19 @@ const Home = ({setSelectQuote}) => {
                 <Button
                 classString={'button inspire'}
                 name={'inspire'}
+                id={'/quote'}
                 setSelectQuote={setSelectQuote}
                 />
                 <Button
                 classString={'button joke'}
                 name={'joke'}
+                id={'/quote'}
                 setSelectQuote={setSelectQuote}
                 />
                 <Button
                 classString={'button inspire'}
                 name={'random'}
+                id={'/quote'}
                 setSelectQuote={setSelectQuote}
                 />
 
