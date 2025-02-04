@@ -1,27 +1,33 @@
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import { useEffect, useState, useMemo } from "react";
 
 
-const useFetchData = () => {
+const useFetchData = (selectQuote) => {
+    console.log(selectQuote)
+
     const APIKey = process.env.REACT_APP_API_KEY
-    const { selectedQuote } = useParams()
-    
-    const URL = 'https://famous-quotes4.p.rapidapi.com/random'
-    const host = 'famous-quotes4.p.rapidapi.com'
+    const URLS = useMemo(() => ({
+    inspire:{ url: 'https://quotes114.p.rapidapi.com/random', host: 'quotes114.p.rapidapi.com'},
+    joke:{ url:'https://dad-jokes7.p.rapidapi.com/dad-jokes/joke-of-the-day', host:'dad-jokes7.p.rapidapi.com'},
+    random:{ url:'https://famous-quotes4.p.rapidapi.com/random', host:'famous-quotes4.p.rapidapi.com'}
+}), [])
 
     const [ data , setData ] = useState('')
     const [ isLoading, setIsLoading] = useState(true)
-    const [ error, setError ] = useState('') 
+    const [ fetchError, setFetchError ] = useState('') 
     
 //Some destructuring and simplifying is required! I would have a fecth for each API, and then call acording  with a different  hook maybe - with an orgnising function in the APP file for which one to call! 
 
     useEffect(() => {
+
         const fetchPosts = async() => {
 
+            const { url, host } = URLS[selectQuote]
+
             const options = {
+               
                 method: 'GET',
-                url: URL,
+                url: url,
                 headers: {
                   'x-rapidapi-key': APIKey,
                   'x-rapidapi-host': host
@@ -32,13 +38,13 @@ const useFetchData = () => {
                   console.log(response.data);
                   setData(response.data)
               } catch (error) {
-                  setError(error)
+                  setFetchError(error)
               } finally { setIsLoading(false) }
         } 
-       fetchPosts()
-    }, [selectedQuote])
+        fetchPosts()
+    }, [selectQuote, APIKey, URLS])
 
-return { data, isLoading, error }
+return { data, isLoading, fetchError }
 }
 
 export default useFetchData

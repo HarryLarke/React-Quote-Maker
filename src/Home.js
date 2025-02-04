@@ -1,10 +1,6 @@
-import { Link } from "react-router-dom"
-import { useState } from "react"
-
 import Button from "./Button"
 
-
-const Home = ({setSelectedQuote, selectedQuote}) => {
+const Home = ({setSelectQuote}) => {
 
     const handleBackground = () => {
         const rNum = Math.floor(Math.random() * (4 - 1) + 1) 
@@ -45,20 +41,17 @@ const Home = ({setSelectedQuote, selectedQuote}) => {
                 <Button
                 classString={'button inspire'}
                 name={'inspire'}
-                setSelectedQuote={setSelectedQuote}
-                selectedQuote={selectedQuote}
+                setSelectQuote={setSelectQuote}
                 />
                 <Button
                 classString={'button joke'}
                 name={'joke'}
-                setSelectedQuote={setSelectedQuote}
-                selectedQuote={selectedQuote}
+                setSelectQuote={setSelectQuote}
                 />
                 <Button
                 classString={'button inspire'}
                 name={'random'}
-                setSelectedQuote={setSelectedQuote}
-                selectedQuote={selectedQuote}
+                setSelectQuote={setSelectQuote}
                 />
 
             </div>

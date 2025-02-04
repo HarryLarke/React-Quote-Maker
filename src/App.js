@@ -1,17 +1,15 @@
 import './index.css';
 import Home from './Home'
-import Quote from './Quote';
-import { Routes, Route, BrowserRouter as Router }  from 'react-router-dom'
-import { useEffect, useState } from 'react';
+import QuotePage from './QuotePage';
+import { Routes, Route }  from 'react-router-dom'
+import { useState } from 'react';
 
 
 //Maybe the best level  since will be moving api's about the place? 
 
 function App() {
 
-  const [selectedQuote, setSelectedQuote] = useState('')
-
-
+  const [selectQuote, setSelectQuote] = useState('')
 
  //Could I make this into a hook?
 
@@ -23,13 +21,12 @@ function App() {
       <Routes>
 
         <Route  path='/'element={<Home
-          selectedQuote={selectedQuote}
-          setSelectedQuote={setSelectedQuote}
+        setSelectQuote={setSelectQuote}
           />}/>
   
 
-        <Route path="/quote" index element={<Quote
-        selectedQuote={selectedQuote} 
+        <Route path="/quote" index element={<QuotePage
+        selectQuote={selectQuote}
         />}/>
       </Routes>
   );
