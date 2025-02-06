@@ -7,18 +7,20 @@ const useFetchData = (selectQuote) => {
 
     const APIKey = process.env.REACT_APP_API_KEY
     const URLS = useMemo(() => ({
-    inspire:{ url: 'https://quotes114.p.rapidapi.com/random', host: 'quotes114.p.rapidapi.com'},
-    joke:{ url:'https://dad-jokes7.p.rapidapi.com/dad-jokes/joke-of-the-day', host:'dad-jokes7.p.rapidapi.com'},
+    inspire:{ url: 'https://demotivational-quotes.p.rapidapi.com/api/quotes/random', host: 'demotivational-quotes.p.rapidapi.com'},
+    joke:{ url:'https://jokes-always.p.rapidapi.com/family', host:'jokes-always.p.rapidapi.com'},
     random:{ url:'https://famous-quotes4.p.rapidapi.com/random', host:'famous-quotes4.p.rapidapi.com'}
 }), [])
 
     const [ data , setData ] = useState('')
+    const [ quoteType, setQuoteType ] = useState('')
     const [ isLoading, setIsLoading] = useState(true)
     const [ fetchError, setFetchError ] = useState('') 
     
 //Some destructuring and simplifying is required! I would have a fecth for each API, and then call acording  with a different  hook maybe - with an orgnising function in the APP file for which one to call! 
 
     useEffect(() => {
+        if (!selectQuote) return
 
         const fetchPosts = async() => {
 
@@ -36,15 +38,17 @@ const useFetchData = (selectQuote) => {
               try {
                   const response = await axios.request(options);
                   console.log(response.data);
-                  setData(response.data)
+                  setData(response.data) 
+                  setQuoteType(selectQuote)
               } catch (error) {
                   setFetchError(error)
               } finally { setIsLoading(false) }
         } 
         fetchPosts()
-    }, [selectQuote, APIKey, URLS])
+    }, [selectQuote, APIKey, URLS])    
 
-return { data, isLoading, fetchError }
+
+return { quoteType, data, isLoading, fetchError }
 }
 
 export default useFetchData

@@ -161,8 +161,8 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
 }
+
 
 
 .subtitle-container {
@@ -215,7 +215,14 @@ body {
     text-align: center;
     justify-items: center;
     padding: 2rem;
+
+    transition: 0.4s;
 }
+
+.button:hover {
+    opacity: 70%;
+}
+
 
 .inspire {
     font-family: var(--QUARTIERY-FONT);

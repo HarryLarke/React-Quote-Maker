@@ -4,10 +4,12 @@ import { useState, useEffect } from "react"
 const useHandleQuoteStyle = (quoteType) => {
     console.log(quoteType)
 
-    const [ quoteStyle, setQuoteStyle ] = useState({fontFamily: "Arial, sans-serif"})
+    const [ quoteStyle, setQuoteStyle ] = useState({fontFamily: "'Cookie', serif"})
 
     useEffect(() => {
-        let fontFamily = "Arial, sans-serif"
+        if (!quoteType) return 
+        
+        let fontFamily = "'Cookie', serif"
         if (quoteType === 'joke') {
             fontFamily = "'Freckle Face', static"}
         

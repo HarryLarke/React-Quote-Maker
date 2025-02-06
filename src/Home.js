@@ -56,7 +56,6 @@ const Home = ({setSelectQuote}) => {
                 id={'/quote'}
                 setSelectQuote={setSelectQuote}
                 />
-
             </div>
 
         </main>
