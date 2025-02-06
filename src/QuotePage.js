@@ -7,7 +7,7 @@ import Quote from "./Quote"
 import Button from "./Button"
 import Missing from "./Missing"
 
-const QuotePage = ({selectQuote}) => {
+const QuotePage = ({selectQuote, setSelectQuote}) => {
 
     const { data, quoteType, isLoading, fetchError } = useFetchData(selectQuote) 
     const { quote, author } = useHandleQuote(data, quoteType)
@@ -34,6 +34,8 @@ const QuotePage = ({selectQuote}) => {
             author={author}
             className={className}
             quoteStyle={quoteStyle}
+            setSelectQuote={setSelectQuote}
+            quoteType={quoteType}
             />}
 
             {!isLoading && !fetchError && !data && <Missing/>}

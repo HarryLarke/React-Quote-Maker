@@ -21,7 +21,6 @@ function App() {
   return (
 
       <Routes>
-
         <Route  path='/'element={<Home
         setSelectQuote={setSelectQuote}
           />}/>
@@ -29,6 +28,7 @@ function App() {
 
         <Route path="/quote" index element={<QuotePage
         selectQuote={selectQuote}
+        setSelectQuote={setSelectQuote}
         />}/>
 
         <Route path='*' element={<Missing/>}/>

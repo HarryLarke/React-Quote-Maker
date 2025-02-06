@@ -2,34 +2,33 @@ import { useEffect, useState } from "react"
 
 const useHandleBackground = (quoteType) => {
 
-    const [ className, setClassName ] = useState('one')
+    const [ className, setClassName ] = useState('main one')
 
     useEffect(() => {
     if (!quoteType) return 
-
-    let isMounted = true
 
         const handleBackground = () => {
         let newClassName = ''
 
             if (quoteType === 'inspire') {
-            const rNum = Math.floor(Math.random() * (4 - 1) + 1) 
-            newClassName = `main ${["four", "five", "six"][rNum]}`
+            const backgroundOptions = ["four", "five", "six"];
+            const rNum = Math.floor(Math.random() * backgroundOptions.length); 
+            newClassName = `main ${backgroundOptions[rNum]}`;
             }
 
             if (quoteType === 'joke') {
-            const rNum = Math.floor(Math.random() * (3 - 1) + 1)
-            newClassName = `main ${["seven", "eight"][rNum]}`
+            const backgroundOptions = ["seven", "eight"];
+            const rNum = Math.floor(Math.random() * backgroundOptions.length); 
+            newClassName = `main ${backgroundOptions[rNum]}`
             }
             
             if (quoteType === 'random') {
-            const rNum = Math.floor(Math.random() * (7 - 1) + 1) 
-            newClassName = `main ${["one", "two", "three", "four", "five", "six"][rNum]}`
-    }
+            const backgroundOptions = ["one", "two", "three", "four", "five", "six"];
+            const rNum = Math.floor(Math.random() * backgroundOptions.length); 
+            newClassName = `main ${backgroundOptions[rNum]}`;
+            }
     setClassName(newClassName)}
     handleBackground()
-
-    return () => {isMounted = false}
 
 }, [quoteType])
 

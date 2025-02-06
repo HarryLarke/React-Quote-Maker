@@ -1,3 +1,5 @@
+
+
 import { Link } from "react-router-dom"
 
 const Quote = ({quote, author, className, quoteStyle}) => {
