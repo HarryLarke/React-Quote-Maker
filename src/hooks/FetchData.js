@@ -3,9 +3,9 @@ import { useEffect, useState, useMemo } from "react";
 
 
 const useFetchData = (selectQuote) => {
-    console.log(selectQuote)
 
     const APIKey = process.env.REACT_APP_API_KEY
+
     const URLS = useMemo(() => ({
     inspire:{ url: 'https://demotivational-quotes.p.rapidapi.com/api/quotes/random', host: 'demotivational-quotes.p.rapidapi.com'},
     joke:{ url:'https://jokes-always.p.rapidapi.com/family', host:'jokes-always.p.rapidapi.com'},
@@ -17,10 +17,9 @@ const useFetchData = (selectQuote) => {
     const [ isLoading, setIsLoading] = useState(true)
     const [ fetchError, setFetchError ] = useState('') 
     
-//Some destructuring and simplifying is required! I would have a fecth for each API, and then call acording  with a different  hook maybe - with an orgnising function in the APP file for which one to call! 
-
     useEffect(() => {
         if (!selectQuote) return
+        let isMounted = true 
 
         const fetchPosts = async() => {
 
@@ -37,7 +36,6 @@ const useFetchData = (selectQuote) => {
               }; 
               try {
                   const response = await axios.request(options);
-                  console.log(response.data);
                   setData(response.data) 
                   setQuoteType(selectQuote)
               } catch (error) {
@@ -45,6 +43,7 @@ const useFetchData = (selectQuote) => {
               } finally { setIsLoading(false) }
         } 
         fetchPosts()
+        return () => {isMounted = false}
     }, [selectQuote, APIKey, URLS])    
 
 

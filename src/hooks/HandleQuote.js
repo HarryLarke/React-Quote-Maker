@@ -1,22 +1,30 @@
+import { useState, useEffect} from "react"
 
 const useHandleQuote = (data, quoteType) => {
+    const [ quote, setQuote ] = useState("")
+    const [ author, setAuthor ] = useState("")
 
+    useEffect(() => {
+        if (!data || !quoteType) return
+
+        const handleQuote = () => {
             if (quoteType === 'inspire' && data.quote) {
-                const quote = data.quote
-                const author = data.author
-                return {quote , author}
+                setQuote(data.quote)
+                setAuthor(data.author)
             }
             if (quoteType === 'joke' && data.data) {
-                const quote = data.data
-                const author = 'Jokes Always'
-                return {quote , author}
+                setQuote(data.data)
+                setAuthor('Jokes Always')
+  
             }
             if (quoteType === "random" && Array.isArray(data) && data.length > 0) {
-                const quote = data[0].text
-                const author = data[0].author
-                return {quote , author}
+                setQuote(data[0].text)
+                setAuthor(data[0].author)
             }}
+        handleQuote() 
+        }, [data, quoteType])
 
-//Where will be the best location to padd in the data?? Maybe put back into the fetch function - it's currently running before the fecth??!
+            return {quote , author}}
+
 
 export default useHandleQuote

@@ -8,7 +8,9 @@ const useHandleQuoteStyle = (quoteType) => {
 
     useEffect(() => {
         if (!quoteType) return 
-        
+
+        const handleQuoteStyle = () => {
+
         let fontFamily = "'Cookie', serif"
         if (quoteType === 'joke') {
             fontFamily = "'Freckle Face', static"}
@@ -17,7 +19,9 @@ const useHandleQuoteStyle = (quoteType) => {
             const rNum = Math.floor(Math.random() * (4 - 1) + 1) 
             fontFamily = ["'Silkscreen', static", "'Freckle Face', static", "'Rye', static"][rNum]}
 
-        setQuoteStyle({fontFamily})
+        setQuoteStyle({fontFamily})}
+
+        handleQuoteStyle() 
 
     }, [quoteType])
 
