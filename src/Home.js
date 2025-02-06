@@ -57,7 +57,6 @@ const Home = ({setSelectQuote}) => {
                 setSelectQuote={setSelectQuote}
                 />
             </div>
-
         </main>
     )
     }
